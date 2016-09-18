@@ -248,6 +248,255 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/18/structure1/" itemprop="url">
+                  数据结构备忘录一
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-18T23:04:59+08:00" content="2016-09-18">
+              2016-09-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###栈##</p>
+<p>问题描述：</p>
+<p>As the new term comes, the Ignatius Train Station is very busy nowadays. A lot of student want to get back to school by train(because the trains in the Ignatius Train Station is the fastest all over the world ^v^). But here comes a problem, there is only one railway where all the trains stop. So all the trains come in from one side and get out from the other side. For this problem, if train A gets into the railway first, and then train B gets into the railway before train A leaves, train A can’t leave until train B leaves. The pictures below figure out the problem. Now the problem for you is, there are at most 9 trains in the station, all the trains has an ID(numbered from 1 to n), the trains get into the railway in an order O1, your task is to determine whether the trains can get out in an order O2.</p>
+<p>1.栈的定义</p>
+<pre><code>typedef struct
+{
+    int *base;
+    int *top;
+    int size;
+}Sqstack;
+</code></pre><p>2.栈的操作</p>
+<pre><code>int push(Sqstack &amp;S,int e)
+{
+    if(S.top - S.base &gt;= S.size)
+    {
+        S.base = (int *)realloc(S.base,(S.size + 1)*sizeof(int));
+        S.top = S.base + S.size;
+        S.size += 1;
+    }
+    *S.top = e;
+    S.top++;
+    return 0;
+}//入栈
+
+int pop(Sqstack &amp;S)
+{
+    if(S.base == S.top)
+    {
+        return 0;
+    }
+    else
+    {
+        -- S.top;
+        return 0;
+    }
+}//出栈
+
+int boolEmpty(Sqstack S)
+{
+    if(S.top == S.base)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}//判断栈空
+</code></pre><p>3.解决代码</p>
+<pre><code>int main()
+{
+    Sqstack S;
+    int n;
+    string str1,str2;
+    string a[30],b;
+    int *p;
+    bool judge = true;
+    while(cin&gt;&gt;n)
+    {
+        S.base=(int *)malloc(10*sizeof(int));
+        S.top = S.base;
+        S.size = 10;
+
+        cin&gt;&gt;str1;
+        //输入O1，进站顺序
+
+            cin&gt;&gt;str2;
+        //输入O2，出站顺序
+        int m = 0;//记录下一次O1循环开始的位置
+        int k = 0;//记录string中的in和out字符串
+        a[k ++] = &quot;Yes.&quot;;
+        for(int i = 0;i &lt; str2.length();i ++)//出站序列O2循环
+        {
+            p = S.top;
+            if(m == n )
+                {
+
+                    if(str2.at(i) - &apos;0&apos; == *(--p))
+                    {
+                        pop(S);
+                        a[k ++] = &quot;out&quot;;
+                    }
+                    else
+                    {
+
+                        judge = false;
+                        break;
+                    }
+                }
+            else
+            {
+                for(int j = m;j &lt; str1.length();j ++)//进站O1序列循环
+                {
+
+                    if(str2.at(i) - &apos;0&apos; == *(-- p))
+                    {
+                        pop(S);
+                        a[k ++] = &quot;out&quot;;
+                        m += 1;
+                        break;
+                    }
+                    else if(str2.at(i) - &apos;0&apos; == str1.at(j) - &apos;0&apos;)
+                    {
+                        push(S,str1.at(j) - &apos;0&apos;);
+                        a[k ++] = &quot;in&quot;;
+                        pop(S);
+                        a[k ++] = &quot;out&quot;;
+                        m += 1;
+                        break;
+                    }
+                    else
+                    {
+                        push(S,str1.at(j) - &apos;0&apos;);
+                        a[k ++] = &quot;in&quot;;
+                        m += 1;
+                    }
+                    p = S.top;
+                }
+
+            }
+        }
+        if(judge == true)
+        {
+            for(int i = 0;i &lt; k;i ++)
+            {
+                cout&lt;&lt;a[i]&lt;&lt;endl;
+            }
+            cout&lt;&lt;&quot;FINISH&quot;&lt;&lt;endl;
+        }
+        if(judge == false)
+        {
+                cout&lt;&lt;&quot;NO.&quot;&lt;&lt;endl;
+                cout&lt;&lt;&quot;FINISH&quot;&lt;&lt;endl;
+        }
+    }
+    return 0;
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/13/structure/" itemprop="url">
                   数据结构备忘录一
                 </a>
@@ -738,7 +987,7 @@ int main()
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

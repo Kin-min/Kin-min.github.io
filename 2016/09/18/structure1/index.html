@@ -84,28 +84,22 @@
 
 
 
-<meta name="description" content="###链表###
-问题：
-某部队进行新兵队列训练，将新兵从一开始按顺序依次编号，并排成一行横队，训练的规则如下：从头开始一至二报数，凡报到二的出列，剩下的向小序号方向靠拢，再从头开始进行一至三报数，凡报到三的出列，剩下的向小序号方向靠拢，继续从头开始进行一至二报数。。。，以后从头开始轮流进行一至二报数、一至三报数直到剩下的人数不超过三人为止。
-1.链表结构的定义
-typedef struct LN">
+<meta name="description" content="###栈##
+问题描述：
+As the new term comes, the Ignatius Train Station is very busy nowadays. A lot of student want to get back to school by train(because the trains in the Ignatius Train Station is the faste">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构备忘录一">
-<meta property="og:url" content="http://hello-zhengjie-kitty.com/2016/09/13/structure/index.html">
+<meta property="og:url" content="http://hello-zhengjie-kitty.com/2016/09/18/structure1/index.html">
 <meta property="og:site_name" content="正确答案">
-<meta property="og:description" content="###链表###
-问题：
-某部队进行新兵队列训练，将新兵从一开始按顺序依次编号，并排成一行横队，训练的规则如下：从头开始一至二报数，凡报到二的出列，剩下的向小序号方向靠拢，再从头开始进行一至三报数，凡报到三的出列，剩下的向小序号方向靠拢，继续从头开始进行一至二报数。。。，以后从头开始轮流进行一至二报数、一至三报数直到剩下的人数不超过三人为止。
-1.链表结构的定义
-typedef struct LN">
-<meta property="og:updated_time" content="2016-09-18T14:46:24.491Z">
+<meta property="og:description" content="###栈##
+问题描述：
+As the new term comes, the Ignatius Train Station is very busy nowadays. A lot of student want to get back to school by train(because the trains in the Ignatius Train Station is the faste">
+<meta property="og:updated_time" content="2016-09-18T15:05:00.344Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构备忘录一">
-<meta name="twitter:description" content="###链表###
-问题：
-某部队进行新兵队列训练，将新兵从一开始按顺序依次编号，并排成一行横队，训练的规则如下：从头开始一至二报数，凡报到二的出列，剩下的向小序号方向靠拢，再从头开始进行一至三报数，凡报到三的出列，剩下的向小序号方向靠拢，继续从头开始进行一至二报数。。。，以后从头开始轮流进行一至二报数、一至三报数直到剩下的人数不超过三人为止。
-1.链表结构的定义
-typedef struct LN">
+<meta name="twitter:description" content="###栈##
+问题描述：
+As the new term comes, the Ignatius Train Station is very busy nowadays. A lot of student want to get back to school by train(because the trains in the Ignatius Train Station is the faste">
 
 
 
@@ -126,7 +120,7 @@ typedef struct LN">
 
 
 
-  <link rel="canonical" href="http://hello-zhengjie-kitty.com/2016/09/13/structure/"/>
+  <link rel="canonical" href="http://hello-zhengjie-kitty.com/2016/09/18/structure1/"/>
 
   <title> 数据结构备忘录一 | 正确答案 </title>
 </head>
@@ -270,8 +264,8 @@ typedef struct LN">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-13T16:54:21+08:00" content="2016-09-13">
-              2016-09-13
+            <time itemprop="dateCreated" datetime="2016-09-18T23:04:59+08:00" content="2016-09-18">
+              2016-09-18
             </time>
           </span>
 
@@ -317,130 +311,141 @@ typedef struct LN">
       
 
       
-        <p>###链表###</p>
-<p>问题：</p>
-<p>某部队进行新兵队列训练，将新兵从一开始按顺序依次编号，并排成一行横队，训练的规则如下：从头开始一至二报数，凡报到二的出列，剩下的向小序号方向靠拢，再从头开始进行一至三报数，凡报到三的出列，剩下的向小序号方向靠拢，继续从头开始进行一至二报数。。。，以后从头开始轮流进行一至二报数、一至三报数直到剩下的人数不超过三人为止。</p>
-<p>1.链表结构的定义</p>
-<pre><code>typedef struct LNode
+        <p>###栈##</p>
+<p>问题描述：</p>
+<p>As the new term comes, the Ignatius Train Station is very busy nowadays. A lot of student want to get back to school by train(because the trains in the Ignatius Train Station is the fastest all over the world ^v^). But here comes a problem, there is only one railway where all the trains stop. So all the trains come in from one side and get out from the other side. For this problem, if train A gets into the railway first, and then train B gets into the railway before train A leaves, train A can’t leave until train B leaves. The pictures below figure out the problem. Now the problem for you is, there are at most 9 trains in the station, all the trains has an ID(numbered from 1 to n), the trains get into the railway in an order O1, your task is to determine whether the trains can get out in an order O2.</p>
+<p>1.栈的定义</p>
+<pre><code>typedef struct
 {
-    int data;
-    struct LNode *next;
-}*LinkList;
-</code></pre><p>2.链表的初始化</p>
-<pre><code>int Init(int m,LinkList &amp;head,LinkList &amp;pre,LinkList &amp;tmp)
+    int *base;
+    int *top;
+    int size;
+}Sqstack;
+</code></pre><p>2.栈的操作</p>
+<pre><code>int push(Sqstack &amp;S,int e)
 {
-    pre = head = tmp =(LinkList)malloc(sizeof(LNode));
-        tmp-&gt;data = 1;
-        tmp-&gt;next = NULL;
-        for(int i = 2;i &lt;= m;i ++)
-        {
-            tmp-&gt;next=(LinkList)malloc(sizeof(LNode));
-            tmp-&gt;next-&gt;data = i;
-            tmp-&gt;next-&gt;next = NULL;
-            tmp = tmp-&gt;next;
-        }
+    if(S.top - S.base &gt;= S.size)
+    {
+        S.base = (int *)realloc(S.base,(S.size + 1)*sizeof(int));
+        S.top = S.base + S.size;
+        S.size += 1;
+    }
+    *S.top = e;
+    S.top++;
     return 0;
-}
-</code></pre><p>3.解决问题</p>
-<pre><code>#include&lt;stdio.h&gt;
-#include&lt;stdlib.h&gt; 
-#include&lt;iostream&gt;
+}//入栈
 
-using namespace std;
-
-typedef struct LNode
+int pop(Sqstack &amp;S)
 {
-    int data;
-    struct LNode *next;
-}*LinkList;
+    if(S.base == S.top)
+    {
+        return 0;
+    }
+    else
+    {
+        -- S.top;
+        return 0;
+    }
+}//出栈
 
-int Init(int m,LinkList &amp;head,LinkList &amp;pre,LinkList &amp;tmp)
+int boolEmpty(Sqstack S)
 {
-    pre = head = tmp =(LinkList)malloc(sizeof(LNode));
-        tmp-&gt;data = 1;
-        tmp-&gt;next = NULL;
-        for(int i = 2;i &lt;= m;i ++)
-        {
-            tmp-&gt;next=(LinkList)malloc(sizeof(LNode));
-            tmp-&gt;next-&gt;data = i;
-            tmp-&gt;next-&gt;next = NULL;
-            tmp = tmp-&gt;next;
-        }
-    return 0;
-}
-
-int main()
+    if(S.top == S.base)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}//判断栈空
+</code></pre><p>3.解决代码</p>
+<pre><code>int main()
 {
-    int n,length,m;
-    LinkList head,pre,tmp;
-    head = NULL;
+    Sqstack S;
+    int n;
+    string str1,str2;
+    string a[30],b;
+    int *p;
+    bool judge = true;
     while(cin&gt;&gt;n)
     {
+        S.base=(int *)malloc(10*sizeof(int));
+        S.top = S.base;
+        S.size = 10;
 
-    while(n--) 
-    {
-        cin&gt;&gt;m;
-        length = m;
-        Init(m,head,pre,tmp);
-        for(int i = 1;length &gt; 3;i ++)
+        cin&gt;&gt;str1;
+        //输入O1，进站顺序
+
+            cin&gt;&gt;str2;
+        //输入O2，出站顺序
+        int m = 0;//记录下一次O1循环开始的位置
+        int k = 0;//记录string中的in和out字符串
+        a[k ++] = &quot;Yes.&quot;;
+        for(int i = 0;i &lt; str2.length();i ++)//出站序列O2循环
         {
-            pre = head;
-            if(i % 2 == 1)//1到2报数
-            {
-                int j = 1;
-                while(pre != NULL)
+            p = S.top;
+            if(m == n )
                 {
-                    if(j % 2 == 0)//数到2的出列，在链表中删除该节点
-                    {
-                        tmp-&gt;next = pre-&gt;next;
-                        free(pre);
-                        length --;
-                        pre = tmp-&gt;next;
-                        j ++;
-                    }
-                    else
-                    {
-                        j ++;
-                        tmp = pre;
-                        pre = pre-&gt;next;
-                    }
-                }
-            }
-            else//1到3报数
-            {
-                int j = 1;
-                while(pre != NULL)
-                {
-                    if(j %3 == 0)//数到3的出列，在链表中删除该节点
-                    {
-                        tmp-&gt;next = pre-&gt;next;
-                        free(pre);
-                        length --;
-                        pre = tmp-&gt;next;
-                        j ++;
-                    }
-                    else
-                    {
-                        j ++;
-                        tmp = pre;
-                        pre = pre-&gt;next;
-                    }
 
+                    if(str2.at(i) - &apos;0&apos; == *(--p))
+                    {
+                        pop(S);
+                        a[k ++] = &quot;out&quot;;
+                    }
+                    else
+                    {
+
+                        judge = false;
+                        break;
+                    }
                 }
+            else
+            {
+                for(int j = m;j &lt; str1.length();j ++)//进站O1序列循环
+                {
+
+                    if(str2.at(i) - &apos;0&apos; == *(-- p))
+                    {
+                        pop(S);
+                        a[k ++] = &quot;out&quot;;
+                        m += 1;
+                        break;
+                    }
+                    else if(str2.at(i) - &apos;0&apos; == str1.at(j) - &apos;0&apos;)
+                    {
+                        push(S,str1.at(j) - &apos;0&apos;);
+                        a[k ++] = &quot;in&quot;;
+                        pop(S);
+                        a[k ++] = &quot;out&quot;;
+                        m += 1;
+                        break;
+                    }
+                    else
+                    {
+                        push(S,str1.at(j) - &apos;0&apos;);
+                        a[k ++] = &quot;in&quot;;
+                        m += 1;
+                    }
+                    p = S.top;
+                }
+
             }
+        }
+        if(judge == true)
+        {
+            for(int i = 0;i &lt; k;i ++)
+            {
+                cout&lt;&lt;a[i]&lt;&lt;endl;
+            }
+            cout&lt;&lt;&quot;FINISH&quot;&lt;&lt;endl;
+        }
+        if(judge == false)
+        {
+                cout&lt;&lt;&quot;NO.&quot;&lt;&lt;endl;
+                cout&lt;&lt;&quot;FINISH&quot;&lt;&lt;endl;
+        }
     }
-    cout&lt;&lt;&quot;1&quot;;
-    head = head-&gt;next;
-            while(head != NULL)
-        {
-            cout &lt;&lt; &quot; &quot; &lt;&lt;head-&gt;data;
-            tmp = head;
-            head = head-&gt;next;
-            free(tmp);
-        }
-    cout&lt;&lt;endl;
-        }
-            }
     return 0;
 }
 </code></pre>
@@ -476,17 +481,13 @@ int main()
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/01/secend-blog/" rel="next" title="夏末秋初--写在八月尾巴上的留恋">
-                <i class="fa fa-chevron-left"></i> 夏末秋初--写在八月尾巴上的留恋
+              <a href="/2016/09/13/structure/" rel="next" title="数据结构备忘录一">
+                <i class="fa fa-chevron-left"></i> 数据结构备忘录一
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/18/structure1/" rel="prev" title="数据结构备忘录一">
-                数据结构备忘录一 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
